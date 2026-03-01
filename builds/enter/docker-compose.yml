@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+
+  xray:
+    build: ../../docker/xray
+    container_name: xray-enter
+    network_mode: host
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./generated/config.json:/etc/xray/config.json
+
+  wireguard:
+    build: ../../docker/wireguard
+    container_name: wg-enter
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    volumes:
+      - ./wg0.conf:/etc/wireguard/wg0.conf
+

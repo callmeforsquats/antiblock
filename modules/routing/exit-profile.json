@@ -1,0 +1,10 @@
+{
+  "domainStrategy": "AsIs",
+  "rules": [
+    {
+      "type": "field",
+      "inboundTag": ["from-enter"],
+      "outboundTag": "direct"
+    }
+  ]
+}

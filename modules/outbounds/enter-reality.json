@@ -1,0 +1,29 @@
+{
+  "tag": "reality-out",
+  "protocol": "vless",
+  "settings": {
+    "vnext": [
+      {
+        "address": "{{EXIT_PUBLIC_IP}}",
+        "port": 443,
+        "users": [
+          {
+            "id": "{{UUID_FROM_ENTER}}",
+            "encryption": "none",
+            "flow": ""
+          }
+        ]
+      }
+    ]
+  },
+  "streamSettings": {
+    "network": "tcp",
+    "security": "reality",
+    "realitySettings": {
+      "serverName": "www.cloudflare.com",
+      "publicKey": "{{EXIT_REALITY_PUBLIC_KEY}}",
+      "shortId": "{{EXIT_SHORT_ID}}",
+      "fingerprint": "chrome"
+    }
+  }
+}

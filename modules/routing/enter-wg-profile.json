@@ -1,0 +1,14 @@
+{
+  "domainStrategy": "AsIs",
+  "rules": [
+    {
+      "type": "field",
+      "inboundTag": [
+        "enter-reality-1",
+        "enter-reality-2",
+        "enter-tls-ws"
+      ],
+      "outboundTag": "wg-out"
+    }
+  ]
+}
