@@ -10,7 +10,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ../builds/generated/config.json:/etc/xray/config.json
+      - ../builds/entry/generated/config.json:/etc/xray/config.json
 
   wireguard:
     build: ../docker/wireguard
