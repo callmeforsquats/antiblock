@@ -3,7 +3,7 @@ version: "3.9"
 services:
 
   xray:
-    build: ../../docker/xray
+    build: ../docker/xray
     container_name: xray-entry
     network_mode: host
     restart: unless-stopped
@@ -13,7 +13,7 @@ services:
       - ./generated/config.json:/etc/xray/config.json
 
   wireguard:
-    build: ../../docker/wireguard
+    build: ../docker/wireguard
     container_name: wg-entry
     network_mode: host
     cap_add:
