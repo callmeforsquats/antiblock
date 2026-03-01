@@ -1,5 +1,5 @@
 [Interface]
-PrivateKey = {{ENTER_WG_PRIVATE_KEY}}
+PrivateKey = {{ENTRY_WG_PRIVATE_KEY}}
 Address = 10.0.0.2/24
 ListenPort = 51820
 

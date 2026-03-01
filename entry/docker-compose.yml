@@ -4,7 +4,7 @@ services:
 
   xray:
     build: ../../docker/xray
-    container_name: xray-enter
+    container_name: xray-entry
     network_mode: host
     restart: unless-stopped
     env_file:
@@ -14,7 +14,7 @@ services:
 
   wireguard:
     build: ../../docker/wireguard
-    container_name: wg-enter
+    container_name: wg-entry
     network_mode: host
     cap_add:
       - NET_ADMIN

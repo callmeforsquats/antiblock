@@ -1,5 +1,5 @@
 {
-  "tag": "enter-tls-ws",
+  "tag": "entry-tls-ws",
   "listen": "127.0.0.1",
   "port": 10000,
   "protocol": "vless",

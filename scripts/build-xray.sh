@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-ROLE=$1        # enter | exit
-PROFILE=$2     # wg | reality (только для enter)
+ROLE=$1        # entry | exit
+PROFILE=$2     # wg | reality (только для entry)
 
 BASE="../core/xray-base.json"
 DNS="../core/dns.json"
@@ -18,27 +18,27 @@ echo "Building Xray config for role: $ROLE"
 CONFIG=$(jq -s '.[0] * .[1]' "$BASE" "$DNS")
 
 # 2️⃣ Inbounds
-if [ "$ROLE" == "enter" ]; then
+if [ "$ROLE" == "entry" ]; then
   INBOUNDS=$(jq -s '.' \
-    ../modules/inbounds/enter-reality-primary.json \
-    ../modules/inbounds/enter-reality-alt.json)
+    ../modules/inbounds/entry-reality-1.json \
+    ../modules/inbounds/entry-reality-2.json)
 else
   INBOUNDS=$(jq -s '.' \
-    ../modules/inbounds/exit-reality-from-enter.json)
+    ../modules/inbounds/exit-reality-from-entry.json)
 fi
 
 CONFIG=$(echo "$CONFIG" | jq --argjson inb "$INBOUNDS" '.inbounds = $inb')
 
 # 3️⃣ Outbounds + Routing
-if [ "$ROLE" == "enter" ]; then
+if [ "$ROLE" == "entry" ]; then
 
   if [ "$PROFILE" == "wg" ]; then
-    OUTS=$(jq -s '.' ../modules/outbounds/enter-wireguard.json)
-    ROUTE="../modules/routing/enter-wg-profile.json"
+    OUTS=$(jq -s '.' ../modules/outbounds/entry-wireguard.json)
+    ROUTE="../modules/routing/entry-wg-profile.json"
     echo "Using WireGuard upstream"
   else
-    OUTS=$(jq -s '.' ../modules/outbounds/enter-reality-upstream.json)
-    ROUTE="../modules/routing/enter-reality-profile.json"
+    OUTS=$(jq -s '.' ../modules/outbounds/entry-reality.json)
+    ROUTE="../modules/routing/entry-reality-profile.json"
     echo "Using Reality upstream"
   fi
 

@@ -8,5 +8,5 @@ PostUp = iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 PostDown = iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 
 [Peer]
-PublicKey = {{ENTER_WG_PUBLIC_KEY}}
+PublicKey = {{ENTRY_WG_PUBLIC_KEY}}
 AllowedIPs = 10.0.0.2/32
