@@ -11,7 +11,7 @@
       "settings": {
         "clients": [
           {
-            "id": "${UUID}",
+            "id": "$UUID",
             "flow": "xtls-rprx-vision"
           }
         ],
@@ -23,8 +23,8 @@
         "realitySettings": {
           "dest": "www.cloudflare.com:443",
           "serverNames": ["www.cloudflare.com"],
-          "privateKey": "${REALITY_PRIVATE_KEY}",
-          "shortIds": ["${SHORT_ID_1}", "${SHORT_ID_2}"]
+          "privateKey": "$REALITY_PRIVATE_KEY",
+          "shortIds": ["$SHORT_ID_1", "$SHORT_ID_2"]
         }
       }
     }
