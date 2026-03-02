@@ -1,8 +1,0 @@
-{
-  "tag": "wg-out",
-  "protocol": "freedom",
-  "settings": {},
-  "streamSettings": {},
-  "proxySettings": {},
-  "sendThrough": "10.0.0.2"
-}

@@ -1,0 +1,83 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+
+  "inbounds": [
+    {
+      "tag": "reality-1",
+      "port": 443,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "${UUID}",
+            "flow": "xtls-rprx-vision"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "dest": "www.cloudflare.com:443",
+          "serverNames": ["www.cloudflare.com"],
+          "privateKey": "${REALITY_PRIVATE_KEY}",
+          "shortIds": ["${SHORT_ID_1}", "${SHORT_ID_2}"]
+        }
+      }
+    }
+  ],
+
+  "outbounds": [
+    {
+      "tag": "to-exit-reality",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "${EXIT_PUBLIC_IP}",
+            "port": 443,
+            "users": [
+              {
+                "id": "${UUID}",
+                "flow": "xtls-rprx-vision",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.cloudflare.com",
+          "publicKey": "${EXIT_REALITY_PUBLIC_KEY}",
+          "shortId": "${EXIT_SHORT_ID}"
+        }
+      }
+    },
+
+    {
+      "tag": "to-exit-wg",
+      "protocol": "freedom",
+      "streamSettings": {
+        "sockopt": {
+          "interface": "wg0"
+        }
+      }
+    }
+  ],
+
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "inboundTag": ["reality-1"],
+        "outboundTag": "to-exit-reality"
+      }
+    ]
+  }
+}
